@@ -42,9 +42,6 @@ path = "../gfx"
 [dependencies.canvas]
 path = "../canvas"
 
-[dependencies.cssparser]
-git = "https://github.com/servo/rust-cssparser"
-
 [dependencies.selectors]
 git = "https://github.com/servo/rust-selectors"
 
@@ -77,3 +74,4 @@ bitflags = "*"
 rustc-serialize = "*"
 libc = "*"
 hyper = "0.3"
+cssparser = "0.3.1"

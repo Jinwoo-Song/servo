@@ -18,7 +18,6 @@
 
 extern crate collections;
 extern crate geom;
-extern crate text_writer;
 extern crate url;
 
 #[macro_use]

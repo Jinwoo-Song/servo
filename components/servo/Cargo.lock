@@ -62,7 +62,7 @@ name = "canvas"
 version = "0.0.1"
 dependencies = [
  "azure 0.1.0 (git+https://github.com/servo/rust-azure)",
- "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "cssparser 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
  "gfx 0.0.1",
  "gleam 0.0.1 (git+https://github.com/servo/gleam)",
@@ -170,15 +170,6 @@ dependencies = [
  "core_foundation 0.1.0 (git+https://github.com/servo/rust-core-foundation)",
  "core_graphics 0.1.0 (git+https://github.com/servo/rust-core-graphics)",
  "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "cssparser"
-version = "0.3.1"
-source = "git+https://github.com/servo/rust-cssparser#ef2c7b4da02d6dfbd4cd68286555d7dfa284efb9"
-dependencies = [
- "encoding 0.2.31 (registry+https://github.com/rust-lang/crates.io-index)",
- "matches 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -596,7 +587,7 @@ dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "canvas 0.0.1",
  "clock_ticks 0.0.5 (git+https://github.com/tomaka/clock_ticks)",
- "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "cssparser 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "encoding 0.2.31 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
  "gfx 0.0.1",
@@ -922,7 +913,7 @@ version = "0.0.1"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "canvas 0.0.1",
- "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "cssparser 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "devtools_traits 0.0.1",
  "encoding 0.2.31 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
@@ -1027,7 +1018,7 @@ name = "style"
 version = "0.0.1"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "cssparser 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "encoding 0.2.31 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
  "lazy_static 0.1.10 (git+https://github.com/Kimundi/lazy-static.rs)",
@@ -1038,7 +1029,6 @@ dependencies = [
  "selectors 0.1.0 (git+https://github.com/servo/rust-selectors)",
  "string_cache 0.0.0 (git+https://github.com/servo/string-cache)",
  "string_cache_plugin 0.0.0 (git+https://github.com/servo/string-cache)",
- "text_writer 0.1.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "url 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
  "util 0.0.1",
 ]
@@ -1047,7 +1037,7 @@ dependencies = [
 name = "style_tests"
 version = "0.0.1"
 dependencies = [
- "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "cssparser 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
  "selectors 0.1.0 (git+https://github.com/servo/rust-selectors)",
  "string_cache 0.0.0 (git+https://github.com/servo/string-cache)",
@@ -1068,11 +1058,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "rand 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
-
-[[package]]
-name = "text_writer"
-version = "0.1.11"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "time"
@@ -1121,7 +1106,7 @@ version = "0.0.1"
 dependencies = [
  "azure 0.1.0 (git+https://github.com/servo/rust-azure)",
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "cssparser 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "fnv 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
  "layers 0.1.0 (git+https://github.com/servo/rust-layers)",

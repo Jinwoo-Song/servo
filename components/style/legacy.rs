@@ -18,19 +18,19 @@ use properties::longhands::{self, border_spacing};
 use selector_matching::Stylist;
 
 use cssparser::Color;
-use selectors::smallvec::VecLike;
 use util::geometry::Au;
+use util::smallvec::VecLike;
 use util::str::LengthOrPercentageOrAuto;
 
 /// Legacy presentational attributes that take a length as defined in HTML5 § 2.4.4.4.
-#[derive(Copy, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 pub enum LengthAttribute {
     /// `<td width>`
     Width,
 }
 
 /// Legacy presentational attributes that take an integer as defined in HTML5 § 2.4.4.2.
-#[derive(Copy, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 pub enum IntegerAttribute {
     /// `<input size>`
     Size,
@@ -39,7 +39,7 @@ pub enum IntegerAttribute {
 }
 
 /// Legacy presentational attributes that take a nonnegative integer as defined in HTML5 § 2.4.4.2.
-#[derive(Copy, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 pub enum UnsignedIntegerAttribute {
     /// `<td border>`
     Border,
@@ -50,7 +50,7 @@ pub enum UnsignedIntegerAttribute {
 }
 
 /// Legacy presentational attributes that take a simple color as defined in HTML5 § 2.4.6.
-#[derive(Copy, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq)]
 pub enum SimpleColorAttribute {
     /// `<body bgcolor>`
     BgColor,
@@ -114,13 +114,13 @@ impl PresentationalHintSynthesis for Stylist {
                     LengthOrPercentageOrAuto::Auto => {}
                     LengthOrPercentageOrAuto::Percentage(percentage) => {
                         let width_value = specified::LengthOrPercentageOrAuto::Percentage(percentage);
-                        matching_rules_list.vec_push(from_declaration(
+                        matching_rules_list.push(from_declaration(
                                 PropertyDeclaration::Width(SpecifiedValue(width_value))));
                         *shareable = false
                     }
                     LengthOrPercentageOrAuto::Length(length) => {
                         let width_value = specified::LengthOrPercentageOrAuto::Length(specified::Length::Absolute(length));
-                        matching_rules_list.vec_push(from_declaration(
+                        matching_rules_list.push(from_declaration(
                                 PropertyDeclaration::Width(SpecifiedValue(width_value))));
                         *shareable = false
                     }
@@ -148,7 +148,7 @@ impl PresentationalHintSynthesis for Stylist {
                     None => {}
                     Some(length) => {
                         let width_value = specified::Length::Absolute(Au::from_px(length as isize));
-                        matching_rules_list.vec_push(from_declaration(
+                        matching_rules_list.push(from_declaration(
                                 PropertyDeclaration::BorderSpacing(
                                     SpecifiedValue(
                                         border_spacing::SpecifiedValue {
@@ -179,7 +179,7 @@ impl PresentationalHintSynthesis for Stylist {
                             }
                             _ => specified::Length::Absolute(Au::from_px(value as isize)),
                         };
-                        matching_rules_list.vec_push(from_declaration(
+                        matching_rules_list.push(from_declaration(
                                 PropertyDeclaration::Width(SpecifiedValue(
                                     specified::LengthOrPercentageOrAuto::Length(value)))));
                         *shareable = false
@@ -196,7 +196,7 @@ impl PresentationalHintSynthesis for Stylist {
                         //
                         // https://html.spec.whatwg.org/multipage/#textarea-effective-width
                         let value = specified::Length::ServoCharacterWidth(specified::CharacterWidth(value));
-                        matching_rules_list.vec_push(from_declaration(
+                        matching_rules_list.push(from_declaration(
                                 PropertyDeclaration::Width(SpecifiedValue(
                                     specified::LengthOrPercentageOrAuto::Length(value)))));
                         *shareable = false
@@ -209,7 +209,7 @@ impl PresentationalHintSynthesis for Stylist {
                         //
                         // https://html.spec.whatwg.org/multipage/#textarea-effective-height
                         let value = specified::Length::FontRelative(specified::FontRelativeLength::Em(value as CSSFloat));
-                        matching_rules_list.vec_push(from_declaration(
+                        matching_rules_list.push(from_declaration(
                                 PropertyDeclaration::Height(SpecifiedValue(
                                     longhands::height::SpecifiedValue(
                                         specified::LengthOrPercentageOrAuto::Length(value))))));
@@ -236,7 +236,7 @@ impl PresentationalHintSynthesis for Stylist {
         match element.get_simple_color_attribute(SimpleColorAttribute::BgColor) {
             None => {}
             Some(color) => {
-                matching_rules_list.vec_push(from_declaration(
+                matching_rules_list.push(from_declaration(
                         PropertyDeclaration::BackgroundColor(SpecifiedValue(
                             CSSColor { parsed: Color::RGBA(color), authored: None }))));
                 *shareable = false
@@ -257,16 +257,16 @@ impl PresentationalHintSynthesis for Stylist {
             None => {}
             Some(length) => {
                 let width_value = specified::Length::Absolute(Au::from_px(length as isize));
-                matching_rules_list.vec_push(from_declaration(
+                matching_rules_list.push(from_declaration(
                         PropertyDeclaration::BorderTopWidth(SpecifiedValue(
                             longhands::border_top_width::SpecifiedValue(width_value)))));
-                matching_rules_list.vec_push(from_declaration(
+                matching_rules_list.push(from_declaration(
                         PropertyDeclaration::BorderLeftWidth(SpecifiedValue(
                             longhands::border_left_width::SpecifiedValue(width_value)))));
-                matching_rules_list.vec_push(from_declaration(
+                matching_rules_list.push(from_declaration(
                         PropertyDeclaration::BorderBottomWidth(SpecifiedValue(
                             longhands::border_bottom_width::SpecifiedValue(width_value)))));
-                matching_rules_list.vec_push(from_declaration(
+                matching_rules_list.push(from_declaration(
                         PropertyDeclaration::BorderRightWidth(SpecifiedValue(
                             longhands::border_right_width::SpecifiedValue(width_value)))));
                 *shareable = false

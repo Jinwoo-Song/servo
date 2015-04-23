@@ -130,7 +130,7 @@ pub fn parse_unsigned_integer<T: Iterator<Item=char>>(input: T) -> Option<u32> {
 #[derive(Copy, Clone)]
 pub enum LengthOrPercentageOrAuto {
     Auto,
-    Percentage(f64),
+    Percentage(f32),
     Length(Au),
 }
 
@@ -171,9 +171,9 @@ pub fn parse_length(mut value: &str) -> LengthOrPercentageOrAuto {
     value = &value[..end_index];
 
     if found_percent {
-        let result: Result<f64, _> = FromStr::from_str(value);
+        let result: Result<f32, _> = FromStr::from_str(value);
         match result {
-            Ok(number) => return LengthOrPercentageOrAuto::Percentage((number as f64) / 100.0),
+            Ok(number) => return LengthOrPercentageOrAuto::Percentage((number as f32) / 100.0),
             Err(_) => return LengthOrPercentageOrAuto::Auto,
         }
     }

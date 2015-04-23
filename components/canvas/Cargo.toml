@@ -10,9 +10,6 @@ path = "lib.rs"
 [dependencies.azure]
 git = "https://github.com/servo/rust-azure"
 
-[dependencies.cssparser]
-git = "https://github.com/servo/rust-cssparser"
-
 [dependencies.geom]
 git = "https://github.com/servo/rust-geom"
 
@@ -32,3 +29,6 @@ path = "../util"
 
 [dependencies.gfx]
 path = "../gfx"
+
+[dependencies]
+cssparser = "0.3.1"
