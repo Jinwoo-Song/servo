@@ -297,6 +297,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "fnv"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "fontconfig"
 version = "0.1.0"
 source = "git+https://github.com/servo/rust-fontconfig#7839e5adcb4d6da3cefe2256f5071ac0203b9206"
@@ -1117,6 +1122,7 @@ dependencies = [
  "azure 0.1.0 (git+https://github.com/servo/rust-azure)",
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "cssparser 0.3.1 (git+https://github.com/servo/rust-cssparser)",
+ "fnv 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "geom 0.1.0 (git+https://github.com/servo/rust-geom)",
  "layers 0.1.0 (git+https://github.com/servo/rust-layers)",
  "lazy_static 0.1.10 (git+https://github.com/Kimundi/lazy-static.rs)",

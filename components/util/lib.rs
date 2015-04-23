@@ -7,16 +7,15 @@
 #![feature(collections)]
 #![feature(core)]
 #![feature(exit_status)]
-#![feature(hash)]
-#![feature(io)]
 #![feature(optin_builtin_traits)]
-#![feature(path)]
 #![cfg_attr(not(target_os = "android"), feature(path_ext))]
 #![feature(plugin)]
 #![feature(rustc_private)]
+#![feature(step_by)]
+#![feature(step_trait)]
 #![feature(std_misc)]
-#![feature(unicode)]
 #![feature(unsafe_destructor)]
+#![feature(zero_one)]
 
 #![plugin(string_cache_plugin)]
 
@@ -26,6 +25,7 @@ extern crate azure;
 extern crate alloc;
 #[macro_use] extern crate bitflags;
 #[macro_use] extern crate cssparser;
+pub extern crate fnv;
 extern crate geom;
 extern crate getopts;
 extern crate layers;
@@ -45,7 +45,6 @@ pub mod cursor;
 pub mod debug_utils;
 pub mod deque;
 pub mod linked_list;
-pub mod fnv;
 pub mod geometry;
 pub mod logical_geometry;
 pub mod mem;

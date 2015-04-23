@@ -4,7 +4,7 @@
 
 use geometry::Au;
 
-use cssparser::{self, RGBA, Color};
+use cssparser::RGBA;
 
 use libc::c_char;
 use std::ascii::AsciiExt;
@@ -12,6 +12,7 @@ use std::borrow::ToOwned;
 use std::ffi::CStr;
 use std::iter::Filter;
 use std::num::{Int, ToPrimitive};
+use std::ops::Deref;
 use std::str::{from_utf8, FromStr, Split};
 
 pub type DOMString = String;
@@ -29,7 +30,7 @@ pub fn null_str_as_empty(s: &Option<DOMString>) -> DOMString {
 
 pub fn null_str_as_empty_ref<'a>(s: &'a Option<DOMString>) -> &'a str {
     match *s {
-        Some(ref s) => s.as_slice(),
+        Some(ref s) => s,
         None => ""
     }
 }
@@ -232,7 +233,7 @@ pub fn parse_legacy_color(mut input: &str) -> Result<RGBA,()> {
             new_input.push(ch)
         }
     }
-    let mut input = new_input.as_slice();
+    let mut input = &*new_input;
 
     // Step 8.
     for (char_count, (index, _)) in input.char_indices().enumerate() {
@@ -243,7 +244,7 @@ pub fn parse_legacy_color(mut input: &str) -> Result<RGBA,()> {
     }
 
     // Step 9.
-    if input.char_at(0) == '#' {
+    if input.as_bytes()[0] == b'#' {
         input = &input[1..]
     }
 
@@ -329,9 +330,11 @@ impl LowercaseString {
     }
 }
 
-impl Str for LowercaseString {
+impl Deref for LowercaseString {
+    type Target = str;
+
     #[inline]
-    fn as_slice(&self) -> &str {
+    fn deref(&self) -> &str {
         &*self.inner
     }
 }

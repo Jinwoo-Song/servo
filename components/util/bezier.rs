@@ -7,7 +7,6 @@
 //! This is based on `WebCore/platform/graphics/UnitBezier.h` in WebKit.
 
 use geom::point::Point2D;
-use std::num::Float;
 
 const NEWTON_METHOD_ITERATIONS: u8 = 8;
 
