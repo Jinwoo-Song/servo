@@ -11,7 +11,8 @@ use rustc_serialize::base64::FromBase64;
 
 use hyper::mime::Mime;
 use std::sync::Arc;
-use url::{percent_decode, SchemeData};
+use url::percent_encoding::percent_decode;
+use url::SchemeData;
 
 pub fn factory(load_data: LoadData, senders: LoadConsumer, _classifier: Arc<MIMEClassifier>) {
     // NB: we don't spawn a new task.

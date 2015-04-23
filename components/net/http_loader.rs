@@ -23,17 +23,17 @@ use openssl::ssl::{SslContext, SslVerifyMode};
 use std::io::{self, Read, Write};
 use std::sync::Arc;
 use std::sync::mpsc::{Sender, channel};
-use std::thunk::Invoke;
 use util::task::spawn_named;
 use util::resource_files::resources_dir_path;
 use util::opts;
 use url::{Url, UrlParser};
 
 use std::borrow::ToOwned;
+use std::boxed::FnBox;
 
 pub fn factory(cookies_chan: Sender<ControlMsg>)
-               -> Box<Invoke<(LoadData, LoadConsumer, Arc<MIMEClassifier>)> + Send> {
-    box move |(load_data, senders, classifier)| {
+               -> Box<FnBox(LoadData, LoadConsumer, Arc<MIMEClassifier>) + Send> {
+    box move |load_data, senders, classifier| {
         spawn_named("http_loader".to_owned(), move || load(load_data, senders, classifier, cookies_chan))
     }
 }

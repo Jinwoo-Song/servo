@@ -9,12 +9,11 @@ use net_traits::CookieSource;
 use pub_domains::PUB_DOMAINS;
 
 use cookie_rs;
-use time::{Tm, now, at, Timespec};
+use time::{Tm, now, at, Timespec, Duration};
 use url::Url;
 use std::borrow::ToOwned;
 use std::i64;
 use std::net::{Ipv4Addr, Ipv6Addr};
-use std::time::Duration;
 use std::str::FromStr;
 
 /// A stored cookie that wraps the definition in cookie-rs. This is used to implement
