@@ -8,9 +8,8 @@ use self::system_reporter::SystemReporter;
 use std::borrow::ToOwned;
 use std::cmp::Ordering;
 use std::collections::HashMap;
-use std::old_io::timer::sleep;
+use std::thread::sleep_ms;
 use std::sync::mpsc::{Sender, channel, Receiver};
-use std::time::duration::Duration;
 use util::task::spawn_named;
 
 #[derive(Clone)]
@@ -95,11 +94,11 @@ impl Profiler {
 
         // Create the timer thread if a period was provided.
         if let Some(period) = period {
-            let period_ms = Duration::milliseconds((period * 1000f64) as i64);
+            let period_ms = (period * 1000.) as u32;
             let chan = chan.clone();
             spawn_named("Memory profiler timer".to_owned(), move || {
                 loop {
-                    sleep(period_ms);
+                    sleep_ms(period_ms);
                     if chan.send(ProfilerMsg::Print).is_err() {
                         break;
                     }
@@ -285,7 +284,7 @@ impl ReportsTree {
         }
 
         let mut indent_str = String::new();
-        for _ in range(0, depth) {
+        for _ in 0..depth {
             indent_str.push_str("   ");
         }
 
@@ -592,7 +591,7 @@ mod system_reporter {
             };
             if looking_for == LookingFor::Segment {
                 // Look for a segment info line.
-                let cap = match seg_re.captures(line.as_slice()) {
+                let cap = match seg_re.captures(&line) {
                     Some(cap) => cap,
                     None => continue,
                 };
@@ -617,7 +616,7 @@ mod system_reporter {
                 looking_for = LookingFor::Rss;
             } else {
                 // Look for an "Rss:" line.
-                let cap = match rss_re.captures(line.as_slice()) {
+                let cap = match rss_re.captures(&line) {
                     Some(cap) => cap,
                     None => continue,
                 };
