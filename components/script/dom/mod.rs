@@ -318,6 +318,7 @@ pub mod storageevent;
 pub mod text;
 pub mod textdecoder;
 pub mod textencoder;
+pub mod traversal;
 pub mod treewalker;
 pub mod uievent;
 pub mod urlhelper;

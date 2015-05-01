@@ -15,6 +15,7 @@ use dom::bindings::js::Temporary;
 use dom::bindings::utils::{Reflector, reflect_dom_object};
 use dom::document::{Document, DocumentHelpers};
 use dom::node::{Node, NodeHelpers};
+use dom::traversal::TraversalHelpers;
 
 // https://dom.spec.whatwg.org/#interface-treewalker
 #[dom_struct]
@@ -127,7 +128,6 @@ impl<'a> TreeWalkerMethods for JSRef<'a, TreeWalker> {
     }
 }
 
-type NodeAdvancer<'a> = Fn(JSRef<'a, Node>) -> Option<Temporary<Node>> + 'a;
 
 trait PrivateTreeWalkerHelpers {
     fn traverse_children<F, G>(self,
